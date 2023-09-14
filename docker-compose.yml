@@ -1,0 +1,21 @@
+version: 1.0.0
+services:
+  api:
+    image: express-docker-api
+    build: .
+    networks:
+      - backend
+    ports:
+      - "127.0.0.1:3031:3001"
+    volumes:
+      - ./:/app
+
+  web-cli:
+    image: express-docker-web
+    networks:
+      - backend
+    command: sh
+
+networks:
+  backend:
+    driver: bridge
